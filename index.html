@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Wallet Connect with JavaScript</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Wallect Connect</h1>
+                    <p>No Wallect connected. Connect wallet!</p>
+
+                    <div id="prepare">
+                        <button class="btn btn-primary" id="btn-connect">Connect Wallet</button>
+                    </div>
+
+                    <div id="connected" style="display: none;">
+                        <button class="btn btn-primary" id="btn-disconnect">
+                            Disconect Wallect
+                        </button>
+                        <hr>
+
+                        <div id="network">
+
+                        </div>
+                        <hr>
+
+                        <h3>All account balances</h3>
+                        <table class="table table-listing">
+                            <thead>
+                                <th>Address</th>
+                                <th>ETH Balance</th>
+                            </thead>
+                            <tbody id="accounts">
+
+                            </tbody>
+                        </table>
+                        <p>Please try to switch between different accounts in your wallect if your wallet supports this functionality</p>
+
+                    </div>
+                    <br>
+                    
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
