@@ -16,16 +16,26 @@ let provider;
 let selectedAccount;
 
 function init() {
-  if (location.protocol !== "https:") {
-    const alert = document.querySelector("#alert-error-https");
-    alert.style.display = "block";
-    document.querySelector("#btn-connect").setAttribute("disabled", "disabled");
-    return;
-  }
+  console.log("Initializing example");
+  console.log("WalletConnectProvider is", WalletConnectProvider);
+  console.log("Fortmatic is", Fortmatic);
+  console.log(
+    "window.web3 is",
+    window.web3,
+    "window.ethereum is",
+    window.ethereum
+  );
+
+  // if (location.protocol !== "https:") {
+  //   const alert = document.querySelector("#alert-error-https");
+  //   alert.style.display = "block";
+  //   document.querySelector("#btn-connect").setAttribute("disabled", "disabled");
+  //   return;
+  // }
 
   const providerOptions = {
     walletconnect: {
-      package: WallectConnectProvider,
+      package: WalletConnectProvider,
       options: {
         infuraId: "",
       },
@@ -85,7 +95,14 @@ async function fetchAccountData() {
   document.querySelector("#connected").style.display = " block";
 }
 
-async function refreshAccountData() {}
+async function refreshAccountData() {
+  document.querySelector("#connected").style.display = "none";
+  document.querySelector("#prepare").style.display = "block";
+
+  document.querySelector("#btn-connect").setAttribute("disabled", "disabled");
+  await fetchAccountData(provider);
+  document.querySelector("btn-connect").removeAttribute("disabled");
+}
 
 async function onConnect() {
   console.log("Opening a diglog", web3Modal);
@@ -111,7 +128,20 @@ async function onConnect() {
   await refreshAccountData();
 }
 
-async function onDisconnect() {}
+async function onDisconnect() {
+  console.log("Killing the wallet connection", provider);
+  if (provider.close) {
+    await provider.close();
+
+    await web3Modal.clearCachedProvider();
+    provider = null;
+  }
+
+  selectedAccount = null;
+
+  document.querySelector("#prepare").style.display = "block";
+  document.querySelector("#connected").style.display = "none";
+}
 
 window.addEventListener("load", async () => {
   init();

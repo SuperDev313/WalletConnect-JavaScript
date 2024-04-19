@@ -11,8 +11,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Wallect Connect</h1>
-                <p>No Wallect connected. Connect wallet!</p>
+                <h1>Wallet Connect</h1>
+                <p>No Wallet connected. Connect wallet!</p>
 
                 <div id="prepare">
                     <button class="btn btn-primary" id="btn-connect">Connect Wallet</button>
@@ -20,7 +20,7 @@
 
                 <div id="connected" style="display: none;">
                     <button class="btn btn-primary" id="btn-disconnect">
-                        Disconect Wallect
+                        Disconect Wallet
                     </button>
                     <hr>
 
@@ -43,10 +43,19 @@
                         functionality</p>
                 </div>
                 <br>
-
             </div>
         </div>
     </div>
+
+    <div id="templates" style="display: none">
+        <template id="template-balance">
+            <tr>
+                <th class="address"></th>
+                <td class="balance"></td>
+            </tr>
+        </template>
+    </div>
+
     <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
     <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
