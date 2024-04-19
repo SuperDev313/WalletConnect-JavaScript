@@ -23,4 +23,19 @@ function init() {
     return;
   }
 
+  const providerOptions = {
+    walletconnect: {
+        package: WallectConnectProvider,
+        options: {
+            infuraId: ""
+        }
+    },
+
+    fortmatic: {
+        package: Fortmatic,
+        options: {
+            key: "",
+        }
+    }
+  }
 }
