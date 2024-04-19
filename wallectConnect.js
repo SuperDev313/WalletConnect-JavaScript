@@ -25,17 +25,25 @@ function init() {
 
   const providerOptions = {
     walletconnect: {
-        package: WallectConnectProvider,
-        options: {
-            infuraId: ""
-        }
+      package: WallectConnectProvider,
+      options: {
+        infuraId: "",
+      },
     },
 
     fortmatic: {
-        package: Fortmatic,
-        options: {
-            key: "",
-        }
-    }
-  }
+      package: Fortmatic,
+      options: {
+        key: "",
+      },
+    },
+  };
+
+  web3Modal = new Web3Modal({
+    cacheProvider: false,
+    providerOptions,
+    disableInjectedProvider: false,
+  });
+
+  console.log("Web3Modal instanse is", web3Modal);
 }
