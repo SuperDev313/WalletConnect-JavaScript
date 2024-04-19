@@ -33,25 +33,26 @@ function init() {
   //   return;
   // }
 
-  const providerOptions = {
-    walletconnect: {
-      package: WalletConnectProvider,
-      options: {
-        infuraId: "",
-      },
-    },
+  // select wallet
+  // const providerOptions = {
+  //   walletconnect: {
+  //     package: WalletConnectProvider,
+  //     options: {
+  //       infuraId: "",
+  //     },
+  //   },
 
-    fortmatic: {
-      package: Fortmatic,
-      options: {
-        key: "",
-      },
-    },
-  };
+  //   fortmatic: {
+  //     package: Fortmatic,
+  //     options: {
+  //       key: "",
+  //     },
+  //   },
+  // };
 
   web3Modal = new Web3Modal({
     cacheProvider: false,
-    providerOptions,
+    // providerOptions,
     disableInjectedProvider: false,
   });
 
@@ -60,10 +61,11 @@ function init() {
 
 async function fetchAccountData() {
   const web3 = new Web3(provider);
-  console.log("Web3 instance is", web3);
 
-  const chainId = await web3.eth.getChainId;
+  const chainId = await web3.eth.getChainId();
+  console.log(chainId);
   const chainData = evmChains.getChain(chainId);
+  console.log(chainData);
   document.querySelector("#network-name").textContent = chainData.name;
 
   const accounts = await web3.eth.getAccounts();
@@ -100,8 +102,9 @@ async function refreshAccountData() {
   document.querySelector("#prepare").style.display = "block";
 
   document.querySelector("#btn-connect").setAttribute("disabled", "disabled");
+
   await fetchAccountData(provider);
-  document.querySelector("btn-connect").removeAttribute("disabled");
+  document.querySelector("#btn-connect").removeAttribute("disabled");
 }
 
 async function onConnect() {
